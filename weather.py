@@ -9,7 +9,7 @@ pd.options.mode.chained_assignment = None
 if platform == "darwin":
     folder = "/Users/ron/OneDrive/Training/Hadoop/WeatherFiles/"
 else:
-    folder = "C:/Users/rowle/OneDrive/Training/Hadoop/WeatherFiles/"
+    folder = "C:\Source\GitHub\WeatherPA/"
     
 ext = "json"
 
