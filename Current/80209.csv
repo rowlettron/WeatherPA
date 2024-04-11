@@ -1,2 +1,0 @@
-PostalCode,lastupdated_epoch,lastupdated,temp_c,temp_f,is_day,current_conditions,wind_mph,wind_kph,wind_degree,wind_dir,pressure_mb,pressure_in,precip_mm,precip_in,humidity,cloud,feelslike_c,feelslike_f,vis_km,vis_miles,uv,gust_kph,gust_mph
-80209,1712247300,2024-04-04 10:15,15.0,59.0,1,Partly cloudy,2.2,3.6,10,N,1016.0,29.99,0.0,0.0,25,50,15.3,59.5,16.0,9.0,4.0,6.6,4.1

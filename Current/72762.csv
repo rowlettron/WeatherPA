@@ -1,2 +1,0 @@
-PostalCode,lastupdated_epoch,lastupdated,temp_c,temp_f,is_day,current_conditions,wind_mph,wind_kph,wind_degree,wind_dir,pressure_mb,pressure_in,precip_mm,precip_in,humidity,cloud,feelslike_c,feelslike_f,vis_km,vis_miles,uv,gust_kph,gust_mph
-72762,1712247300,2024-04-04 11:15,11.0,51.8,1,Sunny,13.6,22.0,300,WNW,1015.0,29.98,0.0,0.0,47,0,8.7,47.6,16.0,9.0,4.0,22.4,13.9
