@@ -33,8 +33,8 @@ BEGIN
 
     WHEN MATCHED THEN 
 
-    UPDATE SET cityname = s.city,
-               region = s.state,
+    UPDATE SET city = s.city,
+               state = s.state,
                country = s.country,
                latitude = s.latitude,
                longitude = s.longitude,
@@ -45,8 +45,8 @@ BEGIN
 
     WHEN NOT MATCHED THEN 
     INSERT (postalcode,
-            cityname,
-            region,
+            city,
+            state,
             country,
             latitude,
             longitude,
