@@ -27,17 +27,67 @@ AS
  *  ----------    --------------------    ---------------------------------------------------------
  **************************************************************************************************/
 BEGIN
+    DROP TABLE IF EXISTS #alpha;
+
+    SELECT PostalCode,
+        time_epoch,
+        CAST([time] AS DATETIME) AS [time],
+        temp_c,
+        temp_f,
+        cast(substring(is_day, 1, 1) AS BIT) AS is_day,
+        wind_mph,
+        wind_kph,
+        wind_degree,
+        wind_dir,
+        pressure_mb,
+        pressure_in,
+        precip_mm,
+        precip_in,
+        snow_cm,
+        humidity,
+        cloud,
+        feelslike_c,
+        feelslike_f,
+        windchill_c,
+        windchill_f,
+        heatindex_c,
+        heatindex_f,
+        dewpoint_c,
+        dewpoint_f,
+        cast(substring(will_it_rain, 1, 1) AS BIT) AS will_it_rain,
+        chance_of_rain,
+        cast(substring(will_it_snow, 1, 1) AS BIT) AS will_it_snow,
+        chance_of_snow,
+        vis_km,
+        vis_miles,
+        gust_mph,
+        gust_kph,
+        uv,
+        conditions,
+        icon,
+        code,
+        sunrise,
+        sunset,
+        moonrise,
+        moonset,
+        moon_phase,
+        moon_illumination,
+        cast(substring(is_moon_up, 1, 1) AS BIT) AS is_moon_up,
+        cast(substring(is_sun_up, 1, 1) AS BIT) AS is_sun_up
+    INTO #alpha
+    FROM dbo.Forecast_Stage;
+
     BEGIN TRY
         MERGE dbo.Forecast AS t 
-        USING dbo.Forecast_Stage AS s 
+        USING #alpha AS s 
             ON s.postalcode = t.postalcode
-            AND s.time_epoch = t.time_epoch 
+            --AND s.time_epoch = t.time_epoch 
+            AND s.time = t.time 
 
 
         WHEN MATCHED THEN
 
-        UPDATE SET time = s.time,
-                temp_c = s.temp_c,
+        UPDATE SET temp_c = s.temp_c,
                 temp_f = s.temp_f,
                 is_day = s.is_day,
                 wind_mph = s.wind_mph,
@@ -77,7 +127,7 @@ BEGIN
                 moonset = s.moonset,
                 moon_phase = s.moon_phase,
                 moon_illumination = s.moon_illumination,
-                is_moon_up = s.is_moon_up,
+                is_moon_up = s.is_moon_up, 
                 is_sun_up = s.is_sun_up
 
         WHEN NOT MATCHED THEN 

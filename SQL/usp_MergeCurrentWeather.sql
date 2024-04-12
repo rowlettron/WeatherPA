@@ -27,34 +27,37 @@ AS
  *  ----------    --------------------    ---------------------------------------------------------
  **************************************************************************************************/
 BEGIN
-    BEGIN TRY
-        MERGE dbo.CurrentWeather AS t 
 
-        USING dbo.CurrentWeather_Stage AS s 
+    BEGIN TRY
+        MERGE dbo.[CurrentWeather] AS t 
+
+        USING dbo.Current_Stage AS s 
             ON s.postalcode = t.postalcode
+            -- AND s.lastupdated = t.lastupdated 
+            AND s.lastupdated_epoch = t.lastupdated_epoch
 
         WHEN MATCHED THEN 
 
         UPDATE SET lastupdated_epoch = s.lastupdated_epoch,
                    lastupdated = s.lastupdated,
                    temp_c = s.temp_c,
-                   temp_f = s.temp_c,
+                   temp_f = s.temp_f,
                    is_day = s.is_day,
                    current_conditions = s.current_conditions,
                    wind_kph = s.wind_kph,
                    wind_mph = s.wind_mph,
                    wind_degree = s.wind_degree,
-                   wind_direction = s.wind_dir, 
+                   wind_dir = s.wind_dir, 
                    pressure_mb = s.pressure_mb,
                    pressure_in = s.pressure_in,
                    precip_mm = s.precip_mm,
-                   precipi_in = s.precip_in,
+                   precip_in = s.precip_in,
                    humidity = s.humidity,
                    cloud = s.cloud,
                    feelslike_c = s.feelslike_c,
                    feelslike_f = s.feelslike_f,
                    vis_km = s.vis_km,
-                   vis_miles = vis_miles,
+                   vis_miles = s.vis_miles,
                    uv = s.uv,
                    gust_mph = s.gust_mph,
                    gust_kph = s.gust_kph
@@ -66,12 +69,12 @@ BEGIN
                 lastupdated,
                 temp_c,
                 temp_f,
-                isd_ay,
+                is_day,
                 current_conditions,
                 wind_mph,
                 wind_kph,
                 wind_degree,
-                wind_direction,
+                wind_dir,
                 pressure_mb,
                 pressure_in,
                 precip_mm,
